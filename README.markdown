@@ -9,17 +9,18 @@ This compiler allows you to write components like so:
 
       // In TypeScript:
       class Greeter extends VueComponent {
-          
           constructor() {
                   this.config = {
                     el: '#events',
                     data: { 
-                        event: { name: '', description: '', date: '' },
-                        events: []
-                    }//
+                        name: 'Sam
+                    }
                 };
                 super();
-          
+          }
+          public ready(): void {
+               console.log(`Hello, ${name}.`);
+          }
       }
 
-Install: `npm install -g dt-init`
+Install: `npm install -g vue-component-compiler`
