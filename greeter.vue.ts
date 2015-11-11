@@ -14,6 +14,10 @@ class Greeter extends VueComponent {
 	}
 
 	public ready(): void {
-		console.log(`Hello, ${name}.`);
+		this.sayHi();
+	}//
+
+	private sayHi(): void {
+		console.log(`Hi, ${name}.`);
 	}//
 }

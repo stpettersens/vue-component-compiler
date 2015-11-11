@@ -7,11 +7,15 @@ class Greeter extends VueComponent {
 			el: '#greeter',
 			data: {
 				name: 'Sam'
-			}
+			}//
 		}	
 	}
 
-	ready() {
-		console.log(`Hello, ${name}.`)
-	}
+	public ready() {
+		this.sayHi();
+	}//
+
+	private sayHi() {
+		console.log(`Hi, ${name}.`);
+	}//
 }

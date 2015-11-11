@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Unofficial compiler for Vue.js components written in a class-based style.",
   "main": "vuecc-lib.js",
+  "bin": {
+    "vuecc": "./vuecc"
+  },
+  "preferGlobal": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
