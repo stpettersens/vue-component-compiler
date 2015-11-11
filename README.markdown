@@ -7,6 +7,7 @@
 
 This compiler allows you to write components like so:
 
+```ts
       // In TypeScript:
       class Greeter extends VueComponent {
           constructor() {
@@ -23,6 +24,7 @@ This compiler allows you to write components like so:
                console.log(`Hello, ${name}.`);
           }
       }
+```
 
 Install: `npm install -g vue-component-compiler`
 
