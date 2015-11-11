@@ -10,13 +10,14 @@ This compiler allows you to write components like so:
       // In TypeScript:
       class Greeter extends VueComponent {
           constructor() {
-                  this.config = {
+                super();
+                this.config = {
                     el: '#events',
                     data: { 
                         name: 'Sam
                     }
                 };
-                super();
+                
           }
           public ready(): void {
                console.log(`Hello, ${name}.`);
@@ -24,3 +25,5 @@ This compiler allows you to write components like so:
       }
 
 Install: `npm install -g vue-component-compiler`
+
+Usage: `vuecc component.vue.ts component.ts`

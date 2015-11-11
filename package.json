@@ -1,0 +1,38 @@
+{
+  "name": "vue-component-compiler",
+  "version": "0.0.1",
+  "description": "Unofficial compiler for Vue.js components written in a class-based style.",
+  "main": "vuecc-lib.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stpettersens/vue-component-compiler.git"
+  },
+  "keywords": [
+    "vue.js",
+    "component",
+    "compiler",
+    "code",
+    "generation",
+    "tool",
+    "utility"
+  ],
+  "author": "Sam Saint-Pettersen <s.stpettersen+github@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stpettersens/vue-component-compiler/issues"
+  },
+  "homepage": "https://github.com/stpettersens/vue-component-compiler",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-insert": "^0.5.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "line-reader": "^0.3.0"
+  }
+}
