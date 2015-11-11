@@ -8,22 +8,29 @@
 This compiler allows you to write components like so:
 
 ```ts
-      // In TypeScript:
-      class Greeter extends VueComponent {
-          constructor() {
-                super();
-                this.config = {
-                    el: '#events',
-                    data: { 
-                        name: 'Sam
-                    }
-                };
-                
-          }
-          public ready(): void {
-               console.log(`Hello, ${name}.`);
-          }
-      }
+// Greeter Vue component in TypeScript
+
+/// <reference path="includes/vue-component.ts" />
+
+class Greeter extends VueComponent {
+	constructor() {
+		super();
+		this.config = {
+			el: '#greeter',
+			data: {
+				name: 'Sam'
+			}//
+		};
+	}
+
+	public ready(): void {
+		this.sayHi();
+	}//
+
+	private sayHi(): void {
+		console.log(`Hi, ${name}.`);
+	}//
+}
 ```
 
 Install: `npm install -g vue-component-compiler`
