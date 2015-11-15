@@ -1,23 +1,21 @@
-// Greeter Vue component in TypeScript
+/// <reference path="vue-controller.ts" />
+/// <reference path="greeter-service.ts" />
 
-/// <reference path="includes/vue-component.ts" />
-
-class Greeter extends VueComponent {
+class GreeterController extends VueController {
+	
 	constructor() {
 		super();
-		this.config = {
-			el: '#greeter',
-			data: {
-				name: 'Sam'
-			}//
+		this.el = '#greeter';
+		this.services = {
+			greeter: new GreeterService()
 		};
 	}
 
 	public ready(): void {
-		this.sayHi();
-	}//
+		this.services.greeter.greet();
+	};
 
 	private sayHi(): void {
-		console.log(`Hi, ${name}.`);
-	}//
+		this.ready();
+	};
 }
