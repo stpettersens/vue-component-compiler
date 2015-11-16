@@ -116,9 +116,9 @@ class VueComponentCompiler {
 		var signatures = new Array<string>();
 		var lines = new Array<string>();
 
-		var ext = this.output.substr(-3);
-		var header = this.header;
-		var references = this.references;
+		var ext: string = this.output.substr(-3);
+		var header: boolean = this.header;
+		var references: string[] = this.references;
 
     	lr.eachLine(this.input, function(line: string, last: boolean) {
 
@@ -191,8 +191,8 @@ class VueComponentCompiler {
 						service = service.replace(/\};/, '');
 						lines.push(service);
 					});
+					lines.push('};');
 				}
-				lines.push('};');
 				lines.push('window.onload = function() {')
 				lines.push('\tnew Vue({');
 				lines.push('\t\tel: ' + el + ',');

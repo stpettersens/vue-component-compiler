@@ -5,4 +5,5 @@ abstract class VueInstance {
 	protected data: any;
 
 	abstract ready(): void;
+	public $set(path: string, value: any): void {};	
 }
