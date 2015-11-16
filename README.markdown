@@ -8,28 +8,26 @@
 This compiler allows you to write components like so:
 
 ```ts
-// Greeter Vue component in TypeScript
+// Greeter Vue instance in TypeScript
 
-/// <reference path="includes/vue-component.ts" />
+/// <reference path="vue-instance.ts" />
 
-class Greeter extends VueComponent {
+class Greeter extends VueInstance {
 	constructor() {
 		super();
-		this.config = {
-			el: '#greeter',
-			data: {
-				name: 'Sam'
-			}//
+		this.el = '#greeter';
+                this.data = {
+                    name: 'Sam'
 		};
 	}
 
 	public ready(): void {
 		this.sayHi();
-	}//
+	};
 
 	private sayHi(): void {
 		console.log(`Hi, ${name}.`);
-	}//
+	};
 }
 ```
 
