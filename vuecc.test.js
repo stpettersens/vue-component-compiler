@@ -1,7 +1,7 @@
 /*
  Run tests for vuecc.
 */
-var vuecc = require('./vuecc-lib'),
+var VueComponentCompiler = require('./vuecc-lib'),
    should = require('should'),
      glob = require('glob');
 

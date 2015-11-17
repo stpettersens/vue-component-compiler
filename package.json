@@ -8,7 +8,7 @@
   },
   "preferGlobal": true,
   "scripts": {
-    "build": "gulp typings && gulp",
+    "build": "gulp",
     "test": "mocha node_modules/mocha/bin/mocha vuecc.test.js --timeout 50000"
   },
   "repository": {
