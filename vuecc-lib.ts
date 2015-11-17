@@ -126,7 +126,8 @@ class VueComponentCompiler {
 				m = line.match(/this.el\s\=(.*);/);
 				if (m != null) el = m[1];
 
-				m = line.match(/(?:public|private|protected)\s*(.*)\((.*)\)/);
+				// (?:public|private|protected)\s*(.*)\((.*)\)
+				m = line.match(/(?:public|private|protected)\s*(.*)\((.*)\:.*\)/);
 				if (m != null) {
 					methods.push(m[1]);
 					if (m[2] != null) signatures.push(m[2]);
@@ -214,7 +215,7 @@ class VueComponentCompiler {
 				methods.splice(0, 1);
 				signatures.splice(0, 1);
 				for (var i = 0; i < methods.length; i++) {
-					lines.push('\t\t\t' + methods[i] + ': function(' + signatures[i] + ') {');
+					lines.push(`\t\t\t${methods[i]}: function(${signatures[i]}) {`);
 					methodsImpl.map(function(impl) {
 						if (impl.indexOf(methods[i] + '-->') != -1) {
 							impl = impl.replace('};', '');
