@@ -65,11 +65,11 @@ class VueComponentCompiler {
  	 * @returns Bold text.
 	*/
 	private embolden(text: string): any {
-        if (this.colors) {
-            return chalk.bold.white(text);
-        }
-        return text;
-    }
+	        if (this.colors) {
+	            return chalk.bold.white(text);
+	        }
+	        return text;
+	}
 	
 	/**
 	 * Display help information and exit.
@@ -86,22 +86,21 @@ class VueComponentCompiler {
 		console.log(' -n | --no-colors   : Don\'t use colorful output.');
 		console.log(' -c | --no-header   : Don\'t generate commented header for output.');
 		console.log(' -h | --help        : Display this usage information and exit.');
-        console.log(' -v | --version     : Display application version and exit.');
+		console.log(' -v | --version     : Display application version and exit.');
 	}
 
 	/**
 	 * Display version and exit.
-    */
-    private displayVersion(): void {
-        this.printInfo('vuecc v. ' + this.version);
-        process.exit(0);
-    }
-
-    /**
-     * Compile the output.
-    */
-    private compile(): void {
-
+	*/
+	private displayVersion(): void {
+		this.printInfo('vuecc v. ' + this.version);
+		process.exit(0);
+	}
+	
+	/**
+	 * Compile the output.
+	*/
+	private compile(): void {
 		var in_method: boolean = false;
 		var in_data: boolean = false;
 		var in_services: boolean = false;
@@ -119,9 +118,8 @@ class VueComponentCompiler {
 		var ext: string = this.output.substr(-3);
 		var header: boolean = this.header;
 		var references: string[] = this.references;
-
-    	lr.eachLine(this.input, function(line: string, last: boolean) {
-
+		
+		lr.eachLine(this.input, function(line: string, last: boolean) {
 			if (!in_method && !in_data && !in_services) {
 				var m = line.match(/class\s(.*)\sextends\sVue.*/);
 				if (m != null) className = m[1];
