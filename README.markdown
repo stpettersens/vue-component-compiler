@@ -16,8 +16,8 @@ class Greeter extends VueInstance {
 	constructor() {
 		super();
 		this.el = '#greeter';
-                this.data = {
-                    name: 'Sam'
+		this.data = {
+		    name: 'Sam'
 		};
 	}
 
@@ -31,6 +31,15 @@ class Greeter extends VueInstance {
 }
 ```
 
-Install: `npm install -g vue-component-compiler`
+##### Install:
 
-Usage: `vuecc component.vue.ts component.ts`
+`npm install -g vue-component-compiler`
+
+##### Usage: 
+
+`vuecc component.vue.ts component.ts`
+
+##### Using Gulp or Grunt?
+
+:tropical_drink: [gulp-vuecc](http://github.com/stpettersens/gulp-vuecc)
+:boar: [grunt-vuecc](http://github.com/stpettersens/grunt-vuecc)
