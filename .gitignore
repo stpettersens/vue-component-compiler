@@ -5,5 +5,5 @@ dt-init-config.json
 vuecc
 greeter.js
 greeter.ts
-typings/
+#typings/ # Temporarily add typings.
 node_modules/

@@ -1,0 +1,14 @@
+#
+# Travis-CI configuration for vue-component-compiler.
+#
+sudo: false
+language: node_js
+node_js:
+    - "iojs"
+    - "0.10"
+    - 0.11
+
+# Install TSD to retrieve used definitions from DefinitelyTyped.
+# Build vue-component-compiler (vuecc) from TypeScript source.
+before_script: "npm install -g tsd && npm run build"
+script: npm test # Invoke mocha tests for vuecc.

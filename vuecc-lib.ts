@@ -252,7 +252,7 @@ class VueComponentCompiler {
      * @param another Another option (e.g. --no-colors switch option).
      * @param yao Yet another option (e.g. ['typings/vue/vue.d.ts'])
     */
-	constructor(input: string, output: string, option: string, another: string, yao: string) {
+	constructor(input: string, output: string, option?: string, another?: string, yao?: string) {
 
 		this.version = '0.1';
 		this.colors = true;
