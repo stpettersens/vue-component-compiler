@@ -127,8 +127,9 @@ class VueComponentCompiler {
 				m = line.match(/this.el\s\=(.*);/);
 				if (m != null) el = m[1];
 
-				// (?:public|private|protected)\s*(.*)\((.*)\)
-				m = line.match(/(?:public|private|protected)\s*(.*)\((.*)\:.*\)/);
+				//(?:public|private|protected)\s*(.*)\((.*)\)
+				//m = line.match(/(?:public|private|protected)\s*(.*)\((.*)\:.*\)/);
+				m = line.match(/(?:public|private|protected)\s*(.*)\((.*)\)/);
 				if (m != null) {
 					methods.push(m[1]);
 					if (m[2] != null) signatures.push(m[2]);
