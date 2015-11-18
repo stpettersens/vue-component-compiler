@@ -1,5 +1,5 @@
 {
-  "name": "vue-component-compiler",
+  "name": "vuecc-compiler",
   "version": "0.0.1",
   "description": "Unofficial compiler for Vue.js components written in a class-based style.",
   "main": "vuecc-lib.js",
