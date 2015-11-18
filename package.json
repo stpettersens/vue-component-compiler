@@ -9,7 +9,7 @@
   "preferGlobal": true,
   "scripts": {
     "build": "gulp",
-    "test": "mocha node_modules/mocha/bin/mocha vuecc.test.js --timeout 50000"
+    "test": "node ./vuecc.js greeter.vue.ts greeter.ts && mocha node_modules/mocha/bin/mocha vuecc.test.js --timeout 50000"
   },
   "repository": {
     "type": "git",

@@ -11,5 +11,6 @@ node_js:
 # Install TSD to retrieve used definitions from DefinitelyTyped.
 # Build vue-component-compiler (vuecc) from TypeScript source.
 before_script: "npm install -g tsd && npm run build"
-script: npm test # Invoke mocha tests for vuecc.
-#
+
+# Invoke tests for vuecc.
+script: npm test

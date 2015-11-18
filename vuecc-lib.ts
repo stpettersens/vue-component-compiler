@@ -118,6 +118,7 @@ class VueComponentCompiler {
 		var ext: string = this.output.substr(-3);
 		var header: boolean = this.header;
 		var references: string[] = this.references;
+		var output: string = this.output;
 		
 		lr.eachLine(this.input, function(line: string, last: boolean) {
 			if (!in_method && !in_data && !in_services) {
@@ -237,7 +238,7 @@ class VueComponentCompiler {
 				}
 
 				lines = lines.filter(isNotEmptyLine);
-				fs.writeFileSync(process.argv[3], lines.join('\n'));
+				fs.writeFileSync(output, lines.join('\n'));
 				return false;
 			}
     	});
