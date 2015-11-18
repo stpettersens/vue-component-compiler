@@ -1,4 +1,4 @@
-### Vue component compiler
+### Vue component compiler by [@stpettersens](https://github.com/stpettersens)
 [![Build Status](https://travis-ci.org/stpettersens/vue-component-compiler.png?branch=master)](https://travis-ci.org/stpettersens/vue-component-compiler)
 [![npm version](https://badge.fury.io/js/vuecc-compiler.svg)](http://npmjs.org/package/vue-component-compiler)
 [![Dependency Status](https://david-dm.org/stpettersens/vue-component-compiler.png?theme=shields.io)](https://david-dm.org/stpettersens/vue-component-compiler) [![Development Dependency Status](https://david-dm.org/stpettersens/vue-component-compiler/dev-status.png?theme=shields.io)](https://david-dm.org/stpettersens/vue-component-compiler#info=devDependencies)
@@ -55,3 +55,5 @@ Usage: vuecc input output [['reference']][-q|--quiet][-n|--no-colors]
 
 :tropical_drink: [gulp-vuecc](http://github.com/stpettersens/gulp-vuecc)
 :boar: [grunt-vuecc](http://github.com/stpettersens/grunt-vuecc)
+
+This utility should not be confused with https://github.com/vuejs/vue-component-compiler
