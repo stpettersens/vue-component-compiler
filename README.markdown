@@ -33,7 +33,7 @@ class Greeter extends VueInstance {
 
 ##### Install:
 
-`npm install -g vue-component-compiler`
+`npm install -g vuecc-compiler` for the `vuecc` command.
 
 ##### Usage: 
 
