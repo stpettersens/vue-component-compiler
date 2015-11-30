@@ -8,7 +8,7 @@ var VueComponentCompiler = require('./vuecc-lib'),
 
 it('Generated component -> greeter.ts', function(done) {
 	var files = glob.sync('greeter.ts');
-	files[0].should.equal('greeter.ts').and.be.a.String;
+	files[0].should.be.a.String.and.equal('greeter.ts');
 	if(fs.exists('greeter.ts')) fs.unlinkSync(files[0]);
 	done();
 });
