@@ -16,7 +16,7 @@ class Greeter extends VueInstance {
 	constructor() {
 		super();
 		this.el = '#greeter';
-		this.name = 'greeter'; // For outside access (e.g. javascript:greeter.sayHi());
+		this.name = 'greeter'; // For outside access (e.g. javascript:greeter.sayHi()).
 		this.data = {
 		    name: 'Sam'
 		};
