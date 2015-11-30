@@ -6,6 +6,7 @@ class GreeterController extends VueController {
 	constructor() {
 		super();
 		this.el = '#greeter';
+		this.name = 'greeter';
 		this.services = {
 			greeter: new GreeterService()
 		};

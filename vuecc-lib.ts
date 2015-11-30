@@ -107,6 +107,7 @@ class VueComponentCompiler {
 		var c_method: string = null;
 		var className: string = null
 		var el: string = null;
+		var name: string = null;
 		var data = new Array<string>();
 		var services = new Array<string>();
 		var methods = new Array<string>();
@@ -124,8 +125,11 @@ class VueComponentCompiler {
 			if (!in_method && !in_data && !in_services) {
 				var m = line.match(/class\s(.*)\sextends\sVue.*/);
 				if (m != null) className = m[1];
-				m = line.match(/this.el\s\=(.*);/);
+				m = line.match(/this\.el\s\=(.*);/);
 				if (m != null) el = m[1];
+
+				m = line.match(/this\.name\s\=(.*);/);
+				if (m != null) name = m[1].replace(/'|"|\s/g, '');
 
 				//(?:public|private|protected)\s*(.*)\((.*)\)
 				//m = line.match(/(?:public|private|protected)\s*(.*)\((.*)\:.*\)/);
@@ -185,6 +189,9 @@ class VueComponentCompiler {
 						lines.push(`/// <reference path="${reference}" />`);
 					});
 				}
+				if(name !== null) {
+					lines.push(`var ${name} = null;`);
+				}
 				if(services.length > 0) {
 					lines.push('var services = {');
 					services.map(function(service: string) {
@@ -195,7 +202,12 @@ class VueComponentCompiler {
 					lines.push('};');
 				}
 				lines.push('window.onload = function() {')
-				lines.push('\tnew Vue({');
+				if(name !== null) {
+					lines.push(`\twindow.${name} = new Vue({`);
+				}
+				else
+					lines.push('\tnew Vue({');
+
 				lines.push('\t\tel: ' + el + ',');
 				lines.push('\t\tdata: {');
 				data.map(function(datum) {
@@ -256,7 +268,7 @@ class VueComponentCompiler {
     */
 	constructor(input: string, output: string, option?: string, another?: string, yao?: string) {
 
-		this.version = '0.1';
+		this.version = '0.3';
 		this.colors = true;
 		this.verbose = true;
 		this.header = true;
