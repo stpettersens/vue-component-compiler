@@ -2,6 +2,7 @@
 
 abstract class VueInstance {
 	protected el: string;
+	protected name: string;
 	protected data: any;
 
 	abstract ready(): void;
