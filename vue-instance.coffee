@@ -1,12 +1,11 @@
-// Vue instance base class.
+# Vue instance base class.
 
-class VueInstance {
+class VueInstance
 	el = ''
-	data = {};
+	data = {}
 
 	ready(): ->
 	    null
 
 	$set(path, value): ->
 	    null	
-
