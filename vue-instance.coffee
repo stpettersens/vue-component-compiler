@@ -2,6 +2,7 @@
 
 class VueInstance
 	el = ''
+	name = ''
 	data = {}
 
 	ready(): ->
