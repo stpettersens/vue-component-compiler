@@ -1,6 +1,3 @@
-# coffee-stir:
-#include vue-controller.coffee
-
 class GreeterController extends VueController
 	
 	constructor: ->
@@ -9,11 +6,10 @@ class GreeterController extends VueController
 		services = {
 			greeter: new GreeterService
 		}
-	}
 
 	ready: ->
 		services.greeter.greet();
 
 	sayHi:-> 
 		ready
-}
+

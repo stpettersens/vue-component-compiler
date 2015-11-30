@@ -2,7 +2,7 @@ class Service
 
 	debug = true
 	
-	constructor(name): ->
+	constructor: (name) ->
 		if debug 
 			console.log "Initialized #{name}..."
 	
