@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/vuecc-compiler.svg)](http://npmjs.org/package/vuecc-compiler)
 [![Dependency Status](https://david-dm.org/stpettersens/vue-component-compiler.png?theme=shields.io)](https://david-dm.org/stpettersens/vue-component-compiler) [![Development Dependency Status](https://david-dm.org/stpettersens/vue-component-compiler/dev-status.png?theme=shields.io)](https://david-dm.org/stpettersens/vue-component-compiler#info=devDependencies)
 
-> :bulb: Unoffical "compiler" for Vue.js components written in a class-based style.
+> :mount_fuji: Unoffical "compiler" for Vue.js components written in a class-based style.
 
 This compiler allows you to write components like so:
 
