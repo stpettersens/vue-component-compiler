@@ -318,7 +318,7 @@ class VueComponentCompiler {
     */
 	constructor(input: string, output: string, option?: string, another?: string, yao?: string) {
 
-		this.version = '0.4';
+		this.version = '0.5';
 		this.colors = true;
 		this.verbose = true;
 		this.header = true;
