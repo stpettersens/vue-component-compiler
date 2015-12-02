@@ -26,6 +26,7 @@ class VueComponentCompiler {
 	private references: string[];
 	private input: string;
 	private output: string;
+	private type: string;
 
 	/**
 	 * Print an error message.
@@ -79,14 +80,15 @@ class VueComponentCompiler {
 	private displayHelp(): void {
 		this.printInfo('Utility to compile class-based Vue components.');
 		this.printInfo(`Copyright 2015 Sam Saint-Pettersen ${this.hilight('[MIT License].')}`)
-		console.log(`\nUsage: ${this.embolden('vuecc')} input output [[\'reference\']][-q|--quiet][-n|--no-colors]`);
+		console.log(`\nUsage: ${this.embolden('vuecc')} input output [[\'reference\']][-t type][-q|--quiet][-n|--no-colors]`);
 		console.log('[-c|--no-header][-h|--help|-v|--version]');
 		console.log('\n input              : Class-based component as input (e.g. component.vue.ts)');
 		console.log(' output             : new Vue() formatted component as output (e.g. component.ts)');
 		console.log(' [\'reference\']      : Reference path include(s) (TypeScript).');
+		console.log(' -t | --type        : Specify language input (coffee, ts, js).');
 		console.log(' -q | --quiet       : Be less verbose (only error output).');
-		console.log(' -n | --no-colors   : Don\'t use colorful output.');
-		console.log(' -c | --no-header   : Don\'t generate commented header for output.');
+		console.log(' -c | --no-colors   : Don\'t use colorful output.');
+		console.log(' -n | --no-header   : Don\'t generate commented header for output.');
 		console.log(' -h | --help        : Display this usage information and exit.');
 		console.log(' -v | --version     : Display application version and exit.');
 	}
@@ -123,6 +125,8 @@ class VueComponentCompiler {
 		var header: boolean = this.header;
 		var references: string[] = this.references;
 		var output: string = this.output;
+
+		if(this.type !== null) iext = '.' + this.type;
 
 		lr.eachLine(this.input, function(line: string, last: boolean) {
 
@@ -200,7 +204,6 @@ class VueComponentCompiler {
 					data.push(m[1]);
 				}
 			}
-
 			else if(in_services) {
 				if (iext === '.coffee')
 					m = line.match(/(\})/);
@@ -322,6 +325,7 @@ class VueComponentCompiler {
 		this.references = new Array<string>();
 		this.input = input;
 		this.output = output;
+		this.type = null;
 
 		if (option == '-q' || option == '--quiet'
 			|| another == '-q' || another == '--quiet'
@@ -333,10 +337,16 @@ class VueComponentCompiler {
 			|| yao == '-c' || yao == '--no-colors')
 			this.colors = false;
 
-		if (option == '-h' || option == '--no-header'
-			|| another == '-h' || another == '--no-header'
-			|| yao == '-h' || yao == '--no-header')
+		if (option == '-n' || option == '--no-header'
+			|| another == '-n' || another == '--no-header'
+			|| yao == '-n' || yao == '--no-header')
 			this.header = false;
+
+		if (option == '-t' || option == '--type')
+			this.type = another;
+
+		else if (another == '-t' || another == '--type')
+			this.type = yao;
 
 		if (option != null && option.charAt(0) == '[') {
 			this.references = JSON.parse(option.replace(/'/g, '"'));
