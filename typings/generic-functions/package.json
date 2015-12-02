@@ -1,0 +1,16 @@
+{
+  "name": "dt-generic-functions",
+  "version": "0.0.0",
+  "description": "TypeScript definitions and tests for generic-functions",
+  "main": "generic-functions.d.ts",
+  "scripts": {
+    "test": "tsc --module commonjs generic-functions-tests.ts && node generic-functions-tests.js"
+  },
+  "keywords": [
+    "type definitions generic-functions"
+  ],
+  "author": "Sam Saint-Pettersen <s.stpettersen+github@gmail.com>",
+  "dependencies": {
+    "generic-functions": "^0.1.9"
+  }
+}

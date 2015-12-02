@@ -5,8 +5,8 @@ class VueInstance
 	name = ''
 	data = {}
 
-	ready(): ->
+	ready: ->
 	    null
 
-	$set(path, value): ->
+	$set: (path, value) ->
 	    null	

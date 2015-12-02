@@ -13,6 +13,6 @@ class GreeterController extends VueController
 		@services.greeter.greet() 
 		#!
 
-	sayHi: (name, title) -> 
+	sayHi: -> 
 		@ready()
 		#!

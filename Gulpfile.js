@@ -4,16 +4,11 @@
 var gulp = require('gulp'),
      tsc = require('gulp-typescript')
   rename = require('gulp-rename'),
-  insert = require('gulp-insert'),
-   _exec = require('child_process').exec;
+  insert = require('gulp-insert');
 
 var header = [ '/*','Vue component compiler.',
 'Unoffical "compiler" for Vue.js components written in a class-based style.','',
 'Copyright 2015 Sam Saint-Pettersen.','','Released under the MIT License.','*/','' ];
-
-gulp.task('typings', function() {
-  _exec('tsd install', function() {});
-});
 
 gulp.task('lib', function() {
  	return gulp.src('vuecc-lib.ts')
@@ -36,15 +31,6 @@ gulp.task('bin', function() {
     .pipe(gulp.dest('.'))
     .pipe(rename('vuecc'))
     .pipe(gulp.dest('.'));
-});
-
-gulp.task('install', ['default'], function() {
-    _exec('npm pack', function(stderr, stdout) {
-      console.log('Packaged: %s', stdout);
-    });
-    _exec('npm install -g vue-component-compiler-0.0.1.tgz', function(stderr, stdout) {
-      console.log('Installed: %s', stdout);
-    });
 });
 
 gulp.task('default', ['lib', 'bin'], function(){});
