@@ -1,5 +1,5 @@
 ### Vue component compiler by [@stpettersens](https://github.com/stpettersens)
-[![Build Status](https://travis-ci.org/stpettersens/vue-component-compiler.png?branch=master)](https://travis-ci.org/stpettersens/vuecc-component-compiler)
+[![Build Status](https://travis-ci.org/stpettersens/vue-component-compiler.png?branch=master)](https://travis-ci.org/stpettersens/vue-component-compiler)
 [![npm version](https://badge.fury.io/js/vuecc-compiler.svg)](http://npmjs.org/package/vuecc-compiler)
 [![Dependency Status](https://david-dm.org/stpettersens/vue-component-compiler.png?theme=shields.io)](https://david-dm.org/stpettersens/vue-component-compiler) [![Development Dependency Status](https://david-dm.org/stpettersens/vue-component-compiler/dev-status.png?theme=shields.io)](https://david-dm.org/stpettersens/vue-component-compiler#info=devDependencies)
 
