@@ -9,8 +9,10 @@ node_js:
     - 0.11
 
 # Install TSD to retrieve used definitions from DefinitelyTyped.
+before_install: "npm install -g tsd && tsd install"
+
 # Build vue-component-compiler (vuecc) from TypeScript source.
-before_script: "npm install -g tsd && npm run build"
+before_script: "npm run build"
 
 # Invoke tests for vuecc.
 script: npm test
