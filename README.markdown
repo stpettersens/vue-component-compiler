@@ -39,8 +39,8 @@ class Greeter extends VueInstance {
 ##### Usage: 
 
 ```
-Usage: vuecc input output [['reference']][-t type][-q|--quiet][-n|--no-colors]
-[-c|--no-header][-h|--help|-v|--version]
+Usage: vuecc input output [['reference']][-t type][-q|--quiet][-c|--no-colors]
+[-n|--no-header][-h|--help|-v|--version]
 
  input              : Class-based component as input (e.g. component.vue.ts)
  output             : new Vue() formatted component as output (e.g. component.ts)
