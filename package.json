@@ -1,6 +1,6 @@
 {
   "name": "vuecc-compiler",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Unofficial compiler for Vue.js components written in a class-based style.",
   "main": "vuecc-lib.js",
   "bin": {
@@ -42,6 +42,6 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "generic-functions": "^0.1.9",
-    "line-reader": "^0.3.0"
+    "line-reader": "^0.4.0"
   }
 }

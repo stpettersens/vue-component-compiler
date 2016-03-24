@@ -80,7 +80,7 @@ class VueComponentCompiler {
 	private displayHelp(): void {
 		this.printInfo('Utility to compile class-based Vue components.');
 		this.printInfo(`Copyright 2015 Sam Saint-Pettersen ${this.hilight('[MIT License].')}`)
-		console.log(`\nUsage: ${this.embolden('vuecc')} input output [[\'reference\']][-t type][-q|--quiet][-n|--no-colors]`);
+		console.log(`\nUsage: ${this.embolden('vuecc')} input output [[\'reference\']][-t|--type][-q|--quiet][-n|--no-colors]`);
 		console.log('[-c|--no-header][-h|--help|-v|--version]');
 		console.log('\n input              : Class-based component as input (e.g. component.vue.ts)');
 		console.log(' output             : new Vue() formatted component as output (e.g. component.ts)');
@@ -117,7 +117,6 @@ class VueComponentCompiler {
 		var methods = new Array<string>();
 		var signatures = new Array<string>();
 		var methodsImpl = new Array<string>();
-		var signatures = new Array<string>();
 		var lines = new Array<string>();
 
 		var iext: string = g.endswithdot(this.input);
@@ -256,12 +255,11 @@ class VueComponentCompiler {
 				lines.push(`\t\tel: ${el},`);
 				lines.push('\t\tdata: {');
 				data.map(function(datum: string) {
-					datum = datum.replace(/\};/, '');
-					datum = datum.replace('}', '');
+					datum = datum.replace(/\};/, '}');
+					datum = datum.replace('}', '}');
 					lines.push(datum);
 				});
-				lines.push('\t\t},');
-				lines.push('\t\tready: function() {');
+				lines.push('\t\t, ready: function() {');
 				methodsImpl.map(function(impl: string) {
 					if (impl.indexOf(methods[0] + '-->') != -1) {
 						impl = impl.replace('};', '');
@@ -318,7 +316,7 @@ class VueComponentCompiler {
     */
 	constructor(input: string, output: string, option?: string, another?: string, yao?: string) {
 
-		this.version = '0.5';
+		this.version = '0.6';
 		this.colors = true;
 		this.verbose = true;
 		this.header = true;
