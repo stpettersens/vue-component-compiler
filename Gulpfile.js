@@ -14,7 +14,6 @@ gulp.task('lib', function() {
  	return gulp.src('vuecc-lib.ts')
  	.pipe(tsc({
  		module: 'commonjs',
-
  		removeComments: true
  	}))
  	.pipe(gulp.dest('.'))
