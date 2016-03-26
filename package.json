@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/stpettersens/vue-component-compiler",
   "devDependencies": {
-    "glob": "^6.0.1",
+    "glob": "^7.0.3",
     "gulp": "^3.9.0",
     "gulp-insert": "^0.5.0",
     "gulp-rename": "^1.2.2",
