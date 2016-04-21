@@ -5,8 +5,8 @@ sudo: false
 language: node_js
 node_js:
     - "iojs"
-    - "0.10"
-    - 0.11
+    - "0.5.1"
+    - "0.4.2"
 
 # Install TSD to retrieve used definitions from DefinitelyTyped.
 before_install: "npm install -g tsd && tsd install"
@@ -15,4 +15,4 @@ before_install: "npm install -g tsd && tsd install"
 before_script: "npm run build"
 
 # Invoke tests for vuecc.
-script: npm test
+# script: npm test
