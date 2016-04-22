@@ -1,6 +1,4 @@
-#
 # Travis-CI configuration for vue-component-compiler.
-#
 sudo: false
 language: node_js
 node_js:
