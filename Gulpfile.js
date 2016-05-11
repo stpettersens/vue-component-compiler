@@ -1,14 +1,17 @@
 /**
  * Gulpfile for Vue component compiler.
 */
-var gulp = require('gulp'),
-     tsc = require('gulp-typescript')
-  rename = require('gulp-rename'),
-  insert = require('gulp-insert');
 
-var header = [ '/*','Vue component compiler.',
+'use strict'
+
+const gulp = require('gulp'),
+       tsc = require('gulp-typescript'),
+    rename = require('gulp-rename'),
+    insert = require('gulp-insert');
+
+let header = [ '/*','Vue component compiler.',
 'Unoffical "compiler" for Vue.js components written in a class-based style.','',
-'Copyright 2015 Sam Saint-Pettersen.','','Released under the MIT License.','*/','' ];
+'Copyright 2015-2016 Sam Saint-Pettersen.','','Released under the MIT License.','*/','' ];
 
 gulp.task('lib', function() {
  	return gulp.src('vuecc-lib.ts')
