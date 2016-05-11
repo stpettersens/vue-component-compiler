@@ -366,7 +366,7 @@ class VueComponentCompiler {
 			process.exit(1);
 		}
 		if(this.verbose) 
-			this.printInfo(`Compiling Vue component: ${this.embolden(input)}`);*/
+			this.printInfo(`Compiling Vue component: ${this.embolden(input)}`);
 
 		this.compile();
 	}
