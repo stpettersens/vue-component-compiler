@@ -4,14 +4,14 @@
 
 'use strict'
 
-const gulp = require('gulp'),
-       tsc = require('gulp-typescript'),
-    rename = require('gulp-rename'),
-    insert = require('gulp-insert');
+const gulp = require('gulp')
+const tsc = require('gulp-typescript')
+const rename = require('gulp-rename')
+const insert = require('gulp-insert')
 
 let header = [ '/*','Vue component compiler.',
 'Unoffical "compiler" for Vue.js components written in a class-based style.','',
-'Copyright 2015-2016 Sam Saint-Pettersen.','','Released under the MIT License.','*/','' ];
+'Copyright 2015-2016 Sam Saint-Pettersen.','','Released under the MIT License.','*/','' ]
 
 gulp.task('core', function() {
  	return gulp.src('vuecc.ts')
@@ -20,7 +20,7 @@ gulp.task('core', function() {
  		removeComments: true
  	}))
  	.pipe(gulp.dest('.'))
- });
+ })
 
 gulp.task('bin', function() {
     return gulp.src('cli.ts')
@@ -32,7 +32,7 @@ gulp.task('bin', function() {
     .pipe(insert.prepend('#!/usr/bin/env node\n'))
     .pipe(gulp.dest('.'))
     .pipe(rename('vuecc'))
-    .pipe(gulp.dest('.'));
+    .pipe(gulp.dest('.'))
 });
 
-gulp.task('default', ['core', 'bin'], function(){});
+gulp.task('default', ['core', 'bin'], function(){})
