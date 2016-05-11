@@ -80,7 +80,7 @@ class VueComponentCompiler {
 	private displayHelp(): void {
 		this.printInfo('Utility to compile class-based Vue components.');
 		this.printInfo(`Copyright 2015-2016 Sam Saint-Pettersen ${this.hilight('[MIT License].')}`)
-		console.log(`\nUsage: ${this.embolden('vuecc')} input output [[\'reference\']][-t|--type][-q|--quiet][-n|--no-colors]`);
+		console.log(`\nUsage: ${this.embolden(this.program)} input output [[\'reference\']][-t|--type][-q|--quiet][-n|--no-colors]`);
 		console.log('[-c|--no-header][-h|--help|-v|--version]');
 		console.log('\n input              : Class-based component as input (e.g. component.vue.ts)');
 		console.log(' output             : new Vue() formatted component as output (e.g. component.ts)');
@@ -313,8 +313,8 @@ class VueComponentCompiler {
      * @param output new Vue() formatted component.
      * @param options Additional options.
     */
-	constructor(input: string, output: string, options: string[]) {
-
+	constructor(program: string, input: string, output: string, options: string[]) {
+		this.program = program;
 		this.version = '0.7';
 		this.colors = true;
 		this.verbose = true;
@@ -325,7 +325,7 @@ class VueComponentCompiler {
 		this.type = null;
 		
 		for (let i = 2; i < options.length; i++) { 
-			// i starts at 2 because process.argv[0, 1] is node and cli.js respectively.
+			// i starts at 2 because process.argv[0, 1] is node and vuecc respectively.
 			if (options[i] == '-q' || options[i] == '--quiet') {
 				this.verbose = false;
 			}
