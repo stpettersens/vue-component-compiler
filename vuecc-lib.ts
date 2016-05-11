@@ -79,7 +79,7 @@ class VueComponentCompiler {
 	*/
 	private displayHelp(): void {
 		this.printInfo('Utility to compile class-based Vue components.');
-		this.printInfo(`Copyright 2015 Sam Saint-Pettersen ${this.hilight('[MIT License].')}`)
+		this.printInfo(`Copyright 2015-2016 Sam Saint-Pettersen ${this.hilight('[MIT License].')}`)
 		console.log(`\nUsage: ${this.embolden('vuecc')} input output [[\'reference\']][-t|--type][-q|--quiet][-n|--no-colors]`);
 		console.log('[-c|--no-header][-h|--help|-v|--version]');
 		console.log('\n input              : Class-based component as input (e.g. component.vue.ts)');
@@ -314,9 +314,9 @@ class VueComponentCompiler {
      * @param another Another option (e.g. --no-colors switch option).
      * @param yao Yet another option (e.g. ['typings/vue/vue.d.ts'])
     */
-	constructor(input: string, output: string, option?: string, another?: string, yao?: string) {
+	constructor(input: string, output: string, options: string[]), // option?: string, another?: string, yao?: string) {
 
-		this.version = '0.6';
+		this.version = '0.7';
 		this.colors = true;
 		this.verbose = true;
 		this.header = true;
@@ -324,8 +324,22 @@ class VueComponentCompiler {
 		this.input = input;
 		this.output = output;
 		this.type = null;
+		
+		options.map(function (opt) {
+			if (opt == '-q' || option == '--quiet') {
+				this.verbose = false;
+			}
+			
+			if (opt =='c' || option == '--no-colors') {
+				this.colors = false;
+			}
+			
+			if (opt == '-n' || option == '--no-header') {
+				this.header = false;
+			}
+		});
 
-		if (option == '-q' || option == '--quiet'
+		/*if (option == '-q' || option == '--quiet'
 			|| another == '-q' || another == '--quiet'
 			|| yao == '-q' || yao == '--quiet')
 			this.verbose = false;
@@ -374,7 +388,7 @@ class VueComponentCompiler {
 			process.exit(1);
 		}
 		if(this.verbose) 
-			this.printInfo(`Compiling Vue component: ${this.embolden(input)}`);
+			this.printInfo(`Compiling Vue component: ${this.embolden(input)}`);*/
 
 		this.compile();
 	}
