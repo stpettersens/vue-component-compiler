@@ -2,7 +2,7 @@
 	Vue component compiler.
 	Unoffical "compiler" for Vue.js components written in a class-based style.
 
-	Copyright 2015 Sam Saint-Pettersen.
+	Copyright 2015-2016 Sam Saint-Pettersen.
 
 	Released under the MIT License.
 */
@@ -314,7 +314,7 @@ class VueComponentCompiler {
      * @param another Another option (e.g. --no-colors switch option).
      * @param yao Yet another option (e.g. ['typings/vue/vue.d.ts'])
     */
-	constructor(input: string, output: string, options: string[]), // option?: string, another?: string, yao?: string) {
+	constructor(input: string, output: string, options: string[]) {
 
 		this.version = '0.7';
 		this.colors = true;
@@ -325,49 +325,27 @@ class VueComponentCompiler {
 		this.output = output;
 		this.type = null;
 		
-		options.map(function (opt) {
-			if (opt == '-q' || option == '--quiet') {
+		for (let i = 2; i < options.length; i++) { 
+			// i starts at 2 because process.argv[1, 2] is node and cli.js respectively.
+			if (options[i] == '-q' || options[i] == '--quiet') {
 				this.verbose = false;
 			}
 			
-			if (opt =='c' || option == '--no-colors') {
+			if (options[i] =='c' || options[i] == '--no-colors') {
 				this.colors = false;
 			}
 			
-			if (opt == '-n' || option == '--no-header') {
+			if (options[i] == '-n' || options[i] == '--no-header') {
 				this.header = false;
 			}
-		});
-
-		/*if (option == '-q' || option == '--quiet'
-			|| another == '-q' || another == '--quiet'
-			|| yao == '-q' || yao == '--quiet')
-			this.verbose = false;
-
-		if (option == '-c' || option == '--no-colors'
-			|| another == '-c' || another == '--no-colors'
-			|| yao == '-c' || yao == '--no-colors')
-			this.colors = false;
-
-		if (option == '-n' || option == '--no-header'
-			|| another == '-n' || another == '--no-header'
-			|| yao == '-n' || yao == '--no-header')
-			this.header = false;
-
-		if (option == '-t' || option == '--type')
-			this.type = another;
-
-		else if (another == '-t' || another == '--type')
-			this.type = yao;
-
-		if (option != null && option.charAt(0) == '[') {
-			this.references = JSON.parse(option.replace(/'/g, '"'));
-		}
-		else if (another != null && another.charAt(0) == '[') {
-			this.references = JSON.parse(another.replace(/'/g, '"'));
-		}
-		else if (yao != null && yao.charAt(0) == '[') {
-			this.references = JSON.parse(yao.replace(/'/g, '"'));
+			
+			if (options[i] == '-t' || options[i] == '--type') {
+				this.type = options[i+1];
+			}
+			
+			if (option != null && option.charAt(0) == '[') {
+				this.references = JSON.parse(option.replace(/'/g, '"'));
+			}
 		}
 
 		if(input == '-h' || input == '--help') {
