@@ -13,8 +13,8 @@ let header = [ '/*','Vue component compiler.',
 'Unoffical "compiler" for Vue.js components written in a class-based style.','',
 'Copyright 2015-2016 Sam Saint-Pettersen.','','Released under the MIT License.','*/','' ];
 
-gulp.task('lib', function() {
- 	return gulp.src('vuecc-lib.ts')
+gulp.task('core', function() {
+ 	return gulp.src('vuecc.ts')
  	.pipe(tsc({
  		module: 'commonjs',
  		removeComments: true
@@ -23,7 +23,7 @@ gulp.task('lib', function() {
  });
 
 gulp.task('bin', function() {
-    return gulp.src('vuecc.ts')
+    return gulp.src('cli.ts')
     .pipe(tsc({
     	module: 'commonjs',
     	removeComments: true
@@ -35,4 +35,4 @@ gulp.task('bin', function() {
     .pipe(gulp.dest('.'));
 });
 
-gulp.task('default', ['lib', 'bin'], function(){});
+gulp.task('default', ['core', 'bin'], function(){});
