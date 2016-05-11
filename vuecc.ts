@@ -308,11 +308,10 @@ class VueComponentCompiler {
     /**
      * VueComponentCompiler implements functionality of vuecc program.
      * @constructor
+     * @param program Program name from process.argv.
      * @param input Class-based component to compile.
      * @param output new Vue() formatted component.
-     * @param option An option (e.g. --quiet switch option).
-     * @param another Another option (e.g. --no-colors switch option).
-     * @param yao Yet another option (e.g. ['typings/vue/vue.d.ts'])
+     * @param options Additional options.
     */
 	constructor(input: string, output: string, options: string[]) {
 
@@ -326,7 +325,7 @@ class VueComponentCompiler {
 		this.type = null;
 		
 		for (let i = 2; i < options.length; i++) { 
-			// i starts at 2 because process.argv[1, 2] is node and cli.js respectively.
+			// i starts at 2 because process.argv[0, 1] is node and cli.js respectively.
 			if (options[i] == '-q' || options[i] == '--quiet') {
 				this.verbose = false;
 			}
