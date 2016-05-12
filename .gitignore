@@ -1,9 +1,11 @@
 *.tgz
-*lib.js
 vuecc.js
+cli.js
 dt-init-config.json
 vuecc
 greeter.js
 greeter.ts
 typings/
 node_modules/
+generic-functions/
+tsconfig.json

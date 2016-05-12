@@ -1,6 +1,6 @@
 *.ts
-*.json
+tsd.json
+typings.json
 *.tgz
 Gulpfile.js
 .travis.yml
-

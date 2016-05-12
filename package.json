@@ -1,15 +1,15 @@
 {
   "name": "vuecc-compiler",
   "version": "0.0.7",
-  "description": "Unofficial compiler for Vue.js components written in a class-based style.",
-  "main": "vuecc-lib.js",
+  "description": "Unofficial compiler for Vue.js components written in a class-based style",
+  "main": "vuecc.js",
   "bin": {
-    "vuecc": "./vuecc"
+    "vuecc": "./cli.js"
   },
   "preferGlobal": true,
   "scripts": {
     "build": "gulp",
-    "test": "node ./vuecc.js examples/typescript/greeter.vue.ts greeter.ts && mocha node_modules/mocha/bin/mocha vuecc.test.js --timeout 50000"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -34,8 +34,9 @@
     "glob": "^7.0.3",
     "gulp": "^3.9.0",
     "gulp-insert": "^0.5.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-typescript": "^2.9.2",
+    "gulp-mocha": "^2.2.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-typescript": "^2.13.4",
     "mocha": "^2.3.4",
     "should": "^8.0.0"
   },

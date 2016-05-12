@@ -7,10 +7,7 @@
 	Released under the MIT License.
 */
 
-/// <reference path="typings/node/node.d.ts" />
-/// <reference path="typings/line-reader/line-reader.d.ts" />
-/// <reference path="typings/chalk/chalk.d.ts" />
-/// <reference path="typings/generic-functions/generic-functions.d.ts" />
+/// <reference path="typings/main.d.ts" />
 
 import fs = require('fs');
 import lr = require('line-reader');
@@ -18,7 +15,7 @@ import chalk = require('chalk');
 import g = require('generic-functions');
 
 class VueComponentCompiler {
-
+	private program: string;
 	private version: string;
 	private colors: boolean;
 	private verbose: boolean;
@@ -27,6 +24,18 @@ class VueComponentCompiler {
 	private input: string;
 	private output: string;
 	private type: string;
+
+	/**
+	 * Check if line is empty.
+	 * @param line Line to check.
+	 * @returns Is line empty?
+	*/
+	private static isNotEmptyLine(line: string) {
+		if (/^\s*\t*$/.test(line) == false) {
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Print an error message.
@@ -73,15 +82,15 @@ class VueComponentCompiler {
 	        }
 	        return text;
 	}
-	
+
 	/**
 	 * Display help information and exit.
 	*/
 	private displayHelp(): void {
 		this.printInfo('Utility to compile class-based Vue components.');
 		this.printInfo(`Copyright 2015-2016 Sam Saint-Pettersen ${this.hilight('[MIT License].')}`)
-		console.log(`\nUsage: ${this.embolden(this.program)} input output [[\'reference\']][-t|--type][-q|--quiet][-n|--no-colors]`);
-		console.log('[-c|--no-header][-h|--help|-v|--version]');
+		console.log(`\nUsage: ${this.embolden(this.program)} input output [[\'reference\']][-t|--type]`);
+		console.log('[-q|--quiet][-n|--no-colors][-c|--no-header][-h|--help|-v|--version]');
 		console.log('\n input              : Class-based component as input (e.g. component.vue.ts)');
 		console.log(' output             : new Vue() formatted component as output (e.g. component.ts)');
 		console.log(' [\'reference\']      : Reference path include(s) (TypeScript).');
@@ -100,7 +109,7 @@ class VueComponentCompiler {
 		this.printInfo('vuecc v. ' + this.version);
 		process.exit(0);
 	}
-	
+
 	/**
 	 * Compile the output.
 	*/
@@ -177,7 +186,7 @@ class VueComponentCompiler {
 
 					line = line.replace('#!', '');
 					line = line.replace(/(\s*)@(.*)/, '$1$2');
-					
+
 					var element = line.match(/this.el\s\=(.*)/);
 					if (element !== null) el = element[1];
 
@@ -225,7 +234,7 @@ class VueComponentCompiler {
 					lines.push(lines[0]);
 				}
 				if(oext === '.ts') {
-					if(references.length == 0) 
+					if(references.length == 0)
 						lines.push('/// <reference path="typings/vue/vue.d.ts" />\n');
 
 					references.map(function(reference: string) {
@@ -273,7 +282,7 @@ class VueComponentCompiler {
 				methods.splice(0, 1);
 				signatures.splice(0, 1);
 				for (var i = 0; i < methods.length; i++) {
-					if (iext === '.coffee') methods[i] = methods[i].replace('\t', ''); 
+					if (iext === '.coffee') methods[i] = methods[i].replace('\t', '');
 					if (signatures[i] === undefined) signatures[i] = '';
 					lines.push(`\t\t\t${methods[i]}: function(${signatures[i]}) {`);
 					methodsImpl.map(function(impl) {
@@ -290,13 +299,7 @@ class VueComponentCompiler {
 				lines.push('\t\t}');
 				lines.push('\t});\n};\n')
 
-				function isNotEmptyLine(line: string) {
-					if (/^\s*\t*$/.test(line) == false)
-						return true;
-					return false;
-				}
-
-				lines = lines.filter(isNotEmptyLine);
+				lines = lines.filter(this.isNotEmptyLine);
 				if(iext === '.coffee')
 					lines = lines.map(function(line) { return line.replace('##', '//') });
 				fs.writeFileSync(output, lines.join('\n'));
@@ -323,27 +326,27 @@ class VueComponentCompiler {
 		this.input = input;
 		this.output = output;
 		this.type = null;
-		
-		for (let i = 2; i < options.length; i++) { 
-			// i starts at 2 because process.argv[0, 1] is node and vuecc respectively.
+
+		for (let i = 2; i < options.length; i++) {
+			// i starts at 2 because process.argv[0, 1] is node and cli.js respectively.
 			if (options[i] == '-q' || options[i] == '--quiet') {
 				this.verbose = false;
 			}
-			
+
 			if (options[i] =='c' || options[i] == '--no-colors') {
 				this.colors = false;
 			}
-			
+
 			if (options[i] == '-n' || options[i] == '--no-header') {
 				this.header = false;
 			}
-			
+
 			if (options[i] == '-t' || options[i] == '--type') {
 				this.type = options[i+1];
 			}
-			
-			if (option != null && option.charAt(0) == '[') {
-				this.references = JSON.parse(option.replace(/'/g, '"'));
+
+			if (options[i] != null && options[i].charAt(0) == '[') {
+				this.references = JSON.parse(options[i].replace(/'/g, '"'));
 			}
 		}
 
@@ -364,7 +367,7 @@ class VueComponentCompiler {
 			this.displayHelp();
 			process.exit(1);
 		}
-		if(this.verbose) 
+		if(this.verbose)
 			this.printInfo(`Compiling Vue component: ${this.embolden(input)}`);
 
 		this.compile();
