@@ -8,7 +8,7 @@ node_js:
 
 # Install typings to retrieve used definitions from DefinitelyTyped.
 before_install:
-  - npm install -g tsd
+  - npm install -g typings
   - typings install
 
 # Build vue-component-compiler (vuecc) from TypeScript source.
