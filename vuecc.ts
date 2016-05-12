@@ -89,7 +89,7 @@ class VueComponentCompiler {
 	private displayHelp(): void {
 		this.printInfo('Utility to compile class-based Vue components.');
 		this.printInfo(`Copyright 2015-2016 Sam Saint-Pettersen ${this.hilight('[MIT License].')}`)
-		console.log(`\nUsage: ${this.embolden(this.program)} input output [[\'reference\']][-t|--type]`);
+		console.log(`\nUsage: ${this.embolden('vuecc')} input output [[\'reference\']][-t|--type]`);
 		console.log('[-q|--quiet][-n|--no-colors][-c|--no-header][-h|--help|-v|--version]');
 		console.log('\n input              : Class-based component as input (e.g. component.vue.ts)');
 		console.log(' output             : new Vue() formatted component as output (e.g. component.ts)');
@@ -299,7 +299,7 @@ class VueComponentCompiler {
 				lines.push('\t\t}');
 				lines.push('\t});\n};\n')
 
-				lines = lines.filter(this.isNotEmptyLine);
+				lines = lines.filter(VueComponentCompiler.isNotEmptyLine);
 				if(iext === '.coffee')
 					lines = lines.map(function(line) { return line.replace('##', '//') });
 				fs.writeFileSync(output, lines.join('\n'));

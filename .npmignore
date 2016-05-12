@@ -1,6 +1,13 @@
 *.ts
 tsd.json
 typings.json
+tsconfig.json
+dt-init-config.json
 *.tgz
 Gulpfile.js
 .travis.yml
+.npmignore
+.gitignore
+typings/
+generic-functions/
+examples/
