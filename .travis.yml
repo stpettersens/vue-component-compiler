@@ -1,9 +1,8 @@
 sudo: false
 language: node_js
 node_js:
-    - "5.1"
-    - "4.2"
-    - "iojs"
+  - "5.1"
+  - "4.2"
 
 # Install typings to retrieve used definitions from DefinitelyTyped.
 before_install:
@@ -13,4 +12,3 @@ before_install:
 # Build vue-component-compiler (vuecc) from TypeScript source.
 before_script:
   - npm run build
-  

@@ -4,7 +4,7 @@
 
 'use strict'
 
-const VueComponentCompiler = require('./vuecc-lib')
+const VueComponentCompiler = require('./vuecc.js')
 const should = require('should')
 const glob = require('glob')
 const fs = require('fs')
