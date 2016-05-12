@@ -9,6 +9,9 @@ const tsc = require('gulp-typescript')
 const replace = require('gulp-replace')
 const insert = require('gulp-insert')
 const mocha = require('gulp-mocha')
+const wait = require('gulp-wait')
+const clean = require('gulp-rimraf')
+const sequence = require('gulp-sequence')
 const _exec = require('child_process').exec
 
 let header = [ '/*','Vue component compiler.',
@@ -39,10 +42,21 @@ gulp.task('bin', function () {
   .pipe(gulp.dest('.'))
 })
 
-gulp.task('test', function () {
-  _exec('node vuecc examples/typescript/greeter.vue.ts greeter.ts', function (){})
+gulp.task('test1', function () {
+  _exec('node cli.js examples/typescript/greeter.vue.ts greeter.ts', function (){})
+  return gulp.src('package.json')
+  .pipe(wait(2000))
+})
+
+gulp.task('test2', function () {
   return gulp.src('vuecc.test.js', {read: false})
   .pipe(mocha({reporter: 'min'}))
 })
 
+gulp.task('clean', function () {
+  return gulp.src(['cli.js', 'vuecc.js', 'greeter.ts'])
+  .pipe(clean())
+})
+
 gulp.task('default', ['core', 'bin'], function (){})
+gulp.task('test', sequence('test1', 'test2'))
