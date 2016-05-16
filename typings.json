@@ -1,6 +1,7 @@
 {
   "ambientDependencies": {
     "chalk": "registry:dt/chalk#0.4.0+20160317120654",
+    "generic-functions": "registry:dt/generic-functions#0.0.0+20160514170344",
     "line-reader": "registry:dt/line-reader#0.0.0+20160316155526",
     "node": "registry:dt/node#4.0.0+20160509154515",
     "vue": "registry:dt/vue#1.0.21+20160423143248"

@@ -9,5 +9,4 @@ Gulpfile.js
 .npmignore
 .gitignore
 typings/
-generic-functions/
 examples/

@@ -7,5 +7,4 @@ greeter.js
 greeter.ts
 typings/
 node_modules/
-generic-functions/
 tsconfig.json
