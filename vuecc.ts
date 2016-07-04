@@ -264,11 +264,12 @@ class VueComponentCompiler {
 				lines.push(`\t\tel: ${el},`);
 				lines.push('\t\tdata: {');
 				data.map(function(datum: string) {
-					datum = datum.replace(/\};/, '}');
-					datum = datum.replace('}', '}');
+					datum = datum.replace(/\};/, '');
+					datum = datum.replace('}', '');
 					lines.push(datum);
 				});
-				lines.push('\t\t, ready: function() {');
+				lines.push('\t\t},');
+				lines.push('\t\tready: function() {');
 				methodsImpl.map(function(impl: string) {
 					if (impl.indexOf(methods[0] + '-->') != -1) {
 						impl = impl.replace('};', '');
@@ -318,7 +319,7 @@ class VueComponentCompiler {
     */
 	constructor(program: string, input: string, output: string, options: string[]) {
 		this.program = program;
-		this.version = '0.7';
+		this.version = '0.8';
 		this.colors = true;
 		this.verbose = true;
 		this.header = true;

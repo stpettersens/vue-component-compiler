@@ -2,16 +2,18 @@
  Run tests for vuecc.
 */
 
+/* global describe it */
 'use strict'
 
-const VueComponentCompiler = require('./vuecc.js')
-const should = require('should')
+const assert = require('chai').assert
 const glob = require('glob')
 const fs = require('fs')
 
-it('Generated component -> greeter.ts', function (done) {
-	var files = glob.sync('greeter.ts')
-	files[0].should.equal('greeter.ts').and.be.a.String
-	if(fs.exists('greeter.ts')) fs.unlinkSync(files[0])
-	done()
+describe('Test vue component compiler:', function () {
+  it('Generated component -> greeter.ts via cli', function (done) {
+    const files = glob.sync('greeter.ts')
+    assert.equal(files[0], 'greeter.ts')
+    assert.equal(fs.existsSync('greeter.ts'), true)
+    done()
+  })
 })

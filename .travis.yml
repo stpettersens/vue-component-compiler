@@ -2,10 +2,9 @@ notifications:
   email: false
 
 language: node_js
-
 node_js:
-  - "5.1"
-  - "4.2"
+  - '6.2'
+  - '5.1'
 
 # Install typings to retrieve used definitions from DefinitelyTyped.
 before_install:

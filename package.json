@@ -1,12 +1,11 @@
 {
   "name": "vuecc-compiler",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Unofficial compiler for Vue.js components written in a class-based style",
   "main": "vuecc.js",
   "bin": {
     "vuecc": "./cli.js"
   },
-  "preferGlobal": true,
   "scripts": {
     "build": "gulp",
     "test": "gulp test"
@@ -31,6 +30,7 @@
   },
   "homepage": "https://github.com/stpettersens/vue-component-compiler",
   "devDependencies": {
+    "chai": "^3.5.0",
     "glob": "^7.0.3",
     "gulp": "^3.9.0",
     "gulp-insert": "^0.5.0",
@@ -39,8 +39,7 @@
     "gulp-rimraf": "^0.2.0",
     "gulp-sequence": "^0.4.5",
     "gulp-typescript": "^2.13.4",
-    "gulp-wait": "0.0.2",
-    "should": "^8.0.0"
+    "gulp-wait": "0.0.2"
   },
   "dependencies": {
     "chalk": "^1.1.1",
