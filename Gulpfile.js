@@ -13,11 +13,16 @@ const wait = require('gulp-wait')
 const clean = require('gulp-rimraf')
 const sequence = require('gulp-sequence')
 const _exec = require('child_process').exec
+const glob = require('glob') // !TODO: Remove this later.
 
 const header = [ '/*', 'Vue component compiler.',
 'Unoffical "compiler" for Vue.js components written in a class-based style.', '',
 'Copyright 2015-2016 Sam Saint-Pettersen.', '',
 'Released under the MIT License.', '*/', '' ]
+
+gulp.task('ls', function () {
+  console.log(glob.sync('*'))
+})
 
 gulp.task('core', function () {
   return gulp.src('vuecc.ts')
@@ -60,4 +65,4 @@ gulp.task('clean', function () {
 })
 
 gulp.task('default', ['core', 'bin'], function () {})
-gulp.task('test', sequence('test1', 'test2'))
+gulp.task('test', sequence('ls')) //, 'test1', 'test2'))
