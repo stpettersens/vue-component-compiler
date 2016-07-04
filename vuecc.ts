@@ -7,7 +7,7 @@
 	Released under the MIT License.
 */
 
-/// <reference path="typings/main.d.ts" />
+/// <reference path="typings/index.d.ts" />
 
 import fs = require('fs');
 import lr = require('line-reader');

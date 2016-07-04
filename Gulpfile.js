@@ -13,15 +13,21 @@ const wait = require('gulp-wait')
 const clean = require('gulp-rimraf')
 const sequence = require('gulp-sequence')
 const _exec = require('child_process').exec
-const glob = require('glob') // !TODO: Remove this later.
+const fs = require('fs')
 
 const header = [ '/*', 'Vue component compiler.',
 'Unoffical "compiler" for Vue.js components written in a class-based style.', '',
 'Copyright 2015-2016 Sam Saint-Pettersen.', '',
 'Released under the MIT License.', '*/', '' ]
 
-gulp.task('ls', function () {
-  console.log(glob.sync('*'))
+gulp.task('typings', function () {
+  if (!fs.existsSync('typings/main.d.ts')) {
+    _exec('typings install', function (stderr, stdout) {
+      console.info(stdout)
+    })
+    return gulp.src('*', {read: false})
+    .pipe(wait(12000))
+  }
 })
 
 gulp.task('core', function () {
@@ -60,9 +66,9 @@ gulp.task('test2', function () {
 })
 
 gulp.task('clean', function () {
-  return gulp.src(['cli.js', 'vuecc.js', 'greeter.ts'])
+  return gulp.src(['cli.js', 'vuecc.js', 'greeter.ts', 'typings'])
   .pipe(clean())
 })
 
-gulp.task('default', ['core', 'bin'], function () {})
-gulp.task('test', sequence('ls')) //, 'test1', 'test2'))
+gulp.task('default', sequence('typings', ['core', 'bin']))
+gulp.task('test', sequence('test1', 'test2'))

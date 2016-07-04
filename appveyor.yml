@@ -8,7 +8,6 @@ install:
   - node --version
   - npm --version
   - npm install -g typings
-  - typings install
   - npm install
 
 test_script:
