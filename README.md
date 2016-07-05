@@ -33,11 +33,25 @@ class Greeter extends VueInstance {
 }
 ```
 
-##### Install:
+##### Install as module:
+
+`npm install vuecc-compiler`
+
+##### Usage as module:
+
+```js
+'use strict'
+const vuecc = require('vuecc-compiler')
+
+const options = { verbose: true }
+vuecc.invoke('input.ts', 'output.ts', options)
+```
+
+##### Install as command:
 
 `npm install -g vuecc-compiler` for the `vuecc` command.
 
-##### Usage:
+##### Usage as command:
 
 ```
 Usage: vuecc input output [['reference']][-t type][-q|--quiet][-c|--no-colors]

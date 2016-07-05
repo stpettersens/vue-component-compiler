@@ -7,5 +7,5 @@
 	Released under the MIT License.
 */
 
-import VueComponentCompiler = require('./vuecc');
-new VueComponentCompiler(process.argv[1], process.argv[2], process.argv[3], process.argv);
+import vuecc = require('./vuecc');
+vuecc.cli(process.argv[1], process.argv[2], process.argv[3], process.argv);

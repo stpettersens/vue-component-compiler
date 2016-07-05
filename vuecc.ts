@@ -15,15 +15,15 @@ import chalk = require('chalk');
 import g = require('generic-functions');
 
 class VueComponentCompiler {
-	private program: string;
-	private version: string;
-	private colors: boolean;
-	private verbose: boolean;
-	private header: boolean;
-	private references: string[];
-	private input: string;
-	private output: string;
-	private type: string;
+	private static program: string;
+	private static version: string;
+	private static colors: boolean;
+	private static verbose: boolean;
+	private static header: boolean;
+	private static references: string[];
+	private static input: string;
+	private static output: string;
+	private static type: string;
 
 	/**
 	 * Check if line is empty.
@@ -41,8 +41,8 @@ class VueComponentCompiler {
 	 * Print an error message.
 	 * @param message Error message to print.
 	*/
-	private printError(message: string): void {
-		if (this.colors) {
+	private static printError(message: string): void {
+		if (VueComponentCompiler.colors) {
 			console.log(chalk.bold.red(message));
 		}
 		else console.log(message);
@@ -52,8 +52,8 @@ class VueComponentCompiler {
 	 * Print an information message.
 	 * @param message Informatiom message to print.
 	*/
-	private printInfo(message: string): void {
-		if (this.colors) {
+	private static printInfo(message: string): void {
+		if (VueComponentCompiler.colors) {
 			console.log(chalk.gray(message));
 		}
 		else console.log(message);
@@ -64,8 +64,8 @@ class VueComponentCompiler {
 	 * @param text Text to highlight.
 	 * @returns Hilighted text.
 	*/
-	private hilight(text: string): any {
-		if (this.colors) {
+	private static hilight(text: string): any {
+		if (VueComponentCompiler.colors) {
 			return chalk.yellow(text);
 		}
 		return text;
@@ -76,19 +76,20 @@ class VueComponentCompiler {
  	 * @param text Text to embolden.
  	 * @returns Bold text.
 	*/
-	private embolden(text: string): any {
-	        if (this.colors) {
-	            return chalk.bold.white(text);
-	        }
-	        return text;
+	private static embolden(text: string): any {text
+		if (VueComponentCompiler.colors) {
+			return chalk.bold.white(text);
+	  }
+	  return text;
 	}
 
 	/**
 	 * Display help information and exit.
 	*/
-	private displayHelp(): void {
-		this.printInfo('Utility to compile class-based Vue components.');
-		this.printInfo(`Copyright 2015-2016 Sam Saint-Pettersen ${this.hilight('[MIT License].')}`)
+	private static displayHelp(): void {
+		const MIT: string = `${VueComponentCompiler.hilight('[MIT License].')}`;
+		VueComponentCompiler.printInfo('Utility to compile class-based Vue components.');
+		VueComponentCompiler.printInfo(`Copyright 2015-2016 Sam Saint-Pettersen ${MIT}`);
 		console.log(`\nUsage: ${this.embolden('vuecc')} input output [[\'reference\']][-t|--type]`);
 		console.log('[-q|--quiet][-n|--no-colors][-c|--no-header][-h|--help|-v|--version]');
 		console.log('\n input              : Class-based component as input (e.g. component.vue.ts)');
@@ -105,15 +106,15 @@ class VueComponentCompiler {
 	/**
 	 * Display version and exit.
 	*/
-	private displayVersion(): void {
-		this.printInfo('vuecc v. ' + this.version);
+	private static displayVersion(): void {
+		VueComponentCompiler.printInfo('vuecc v. ' + VueComponentCompiler.version);
 		process.exit(0);
 	}
 
 	/**
 	 * Compile the output.
 	*/
-	private compile(): void {
+	private static compile(): void {
 		var in_method: boolean = false;
 		var in_data: boolean = false;
 		var in_services: boolean = false;
@@ -128,15 +129,15 @@ class VueComponentCompiler {
 		var methodsImpl = new Array<string>();
 		var lines = new Array<string>();
 
-		var iext: string = g.endswithdot(this.input);
-		var oext: string = g.endswithdot(this.output);
-		var header: boolean = this.header;
-		var references: string[] = this.references;
-		var output: string = this.output;
+		var iext: string = g.endswithdot(VueComponentCompiler.input);
+		var oext: string = g.endswithdot(VueComponentCompiler.output);
+		var header: boolean = VueComponentCompiler.header;
+		var references: string[] = VueComponentCompiler.references;
+		var output: string = VueComponentCompiler.output;
 
-		if(this.type !== null) iext = '.' + this.type;
+		if(VueComponentCompiler.type !== null) iext = '.' + VueComponentCompiler.type;
 
-		lr.eachLine(this.input, function(line: string, last: boolean) {
+		lr.eachLine(VueComponentCompiler.input, function(line: string, last: boolean) {
 
 			//console.log(line);
 			if (!in_method && !in_data && !in_services) {
@@ -310,68 +311,71 @@ class VueComponentCompiler {
     }
 
     /**
-     * VueComponentCompiler implements functionality of vuecc program.
-     * @constructor
+     * Invoke VueComponentCompiler via command line.
      * @param program Program name from process.argv.
      * @param input Class-based component to compile.
      * @param output new Vue() formatted component.
      * @param options Additional options.
     */
-	constructor(program: string, input: string, output: string, options: string[]) {
-		this.program = program;
-		this.version = '0.8';
-		this.colors = true;
-		this.verbose = true;
-		this.header = true;
-		this.references = new Array<string>();
-		this.input = input;
-		this.output = output;
-		this.type = null;
+	public static cli(program: string, input: string, output: string, options: string[]) {
+		VueComponentCompiler.program = program;
+		VueComponentCompiler.version = '0.9';
+		VueComponentCompiler.colors = true;
+		VueComponentCompiler.verbose = true;
+		VueComponentCompiler.header = true;
+		VueComponentCompiler.references = new Array<string>();
+		VueComponentCompiler.input = input;
+		VueComponentCompiler.output = output;
+		VueComponentCompiler.type = null;
 
 		for (let i = 2; i < options.length; i++) {
 			// i starts at 2 because process.argv[0, 1] is node and cli.js respectively.
 			if (options[i] == '-q' || options[i] == '--quiet') {
-				this.verbose = false;
+				VueComponentCompiler.verbose = false;
 			}
 
 			if (options[i] =='c' || options[i] == '--no-colors') {
-				this.colors = false;
+				VueComponentCompiler.colors = false;
 			}
 
 			if (options[i] == '-n' || options[i] == '--no-header') {
-				this.header = false;
+				VueComponentCompiler.header = false;
 			}
 
 			if (options[i] == '-t' || options[i] == '--type') {
-				this.type = options[i+1];
+				VueComponentCompiler.type = options[i+1];
 			}
 
 			if (options[i] != null && options[i].charAt(0) == '[') {
-				this.references = JSON.parse(options[i].replace(/'/g, '"'));
+				VueComponentCompiler.references = JSON.parse(options[i].replace(/'/g, '"'));
 			}
 		}
 
 		if(input == '-h' || input == '--help') {
-			this.displayHelp();
+			VueComponentCompiler.displayHelp();
 			process.exit(0);
 		}
 		else if(input == '-v' || input == '--version') {
-			this.displayVersion();
+			VueComponentCompiler.displayVersion();
 		}
 		if(input == null || input.charAt(0) == '-') {
-			this.printError('Please specify a valid input file.\n');
-			this.displayHelp();
+			VueComponentCompiler.printError('Please specify a valid input file.\n');
+			VueComponentCompiler.displayHelp();
 			process.exit(1);
 		}
 		else if(output == null || output.charAt(0) == '-') {
-			this.printError('Please specify a valid output file.\n');
-			this.displayHelp();
+			VueComponentCompiler.printError('Please specify a valid output file.\n');
+			VueComponentCompiler.displayHelp();
 			process.exit(1);
 		}
-		if(this.verbose)
-			this.printInfo(`Compiling Vue component: ${this.embolden(input)}`);
+		if(VueComponentCompiler.verbose)
+			VueComponentCompiler.printInfo(`Compiling Vue component: ${this.embolden(input)}`);
 
-		this.compile();
+		VueComponentCompiler.compile();
+	}
+
+	public static invoke(input: string, output: string, options: Object[]) {
+		// TODO Implement invoke method.
 	}
 }
 export = VueComponentCompiler;
