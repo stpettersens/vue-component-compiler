@@ -2,6 +2,8 @@
 *.yml
 *.tgz
 *.test.js
+greeter.js
+greeter.ts
 tsd.json
 typings.json
 tsconfig.json
