@@ -15,8 +15,10 @@ import chalk = require('chalk');
 import g = require('generic-functions');
 
 interface CompilerOpts {
-	quiet: boolean;
+	verbose: boolean;
 	colors: boolean;
+	header: boolean;
+	type: string;
 }
 
 class VueComponentCompiler {
@@ -377,23 +379,6 @@ class VueComponentCompiler {
 			VueComponentCompiler.printInfo(`Compiling Vue component: ${this.embolden(input)}`);
 
 		VueComponentCompiler.compile();
-	}
-
-	/**
-	 * Invoke VueComponentCompiler via module interface.
-	 * @param input Class-based component to compile.
-	 * @param output new Vue() formatted component.
-	 * @param options Additional options.
-	*/
-	public static invoke(input: string, output: string, options: CompilerOpts): void {
-		var str_options: string[] = new Array<string>();
-		if (options.quiet) {
-			str_options.push('--quiet');
-		}
-		if (!options.colors) {
-			str_options.push('--no-colors');
-		}
-		VueComponentCompiler.cli('vuecc', input, output, str_options);
 	}
 }
 export = VueComponentCompiler;

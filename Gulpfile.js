@@ -55,20 +55,30 @@ gulp.task('bin', function () {
 })
 
 gulp.task('test1', function () {
-  _exec('node cli.js examples/typescript/greeter.vue.ts greeter.ts', function () {})
+  _exec('node cli.js examples/typescript/greeter.vue.ts greeter.ts', function (stderr, stdout) {
+    console.log(stdout)
+  })
   return gulp.src('*', {read: false})
   .pipe(wait(2000))
 })
 
 gulp.task('test2', function () {
+  _exec('node cli.js examples/typescript/greeter.vue.ts greeter.js', function (stderr, stdout) {
+    console.log(stdout)
+  })
+  return gulp.src('*', {read: false})
+  .pipe(wait(2000))
+})
+
+gulp.task('test3', function () {
   return gulp.src('vuecc.test.js', {read: false})
   .pipe(mocha({reporter: 'min'}))
 })
 
 gulp.task('clean', function () {
-  return gulp.src(['cli.js', 'vuecc.js', 'greeter.ts', 'typings'])
+  return gulp.src(['cli.js', 'vuecc.js', 'greeter.ts', 'greeter.js', 'typings'])
   .pipe(clean())
 })
 
 gulp.task('default', sequence('typings', ['core', 'bin']))
-gulp.task('test', sequence('test1', 'test2'))
+gulp.task('test', sequence('test1', 'test2', 'test3'))
