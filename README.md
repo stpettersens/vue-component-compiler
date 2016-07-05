@@ -1,10 +1,11 @@
 ### Vue component compiler by [@stpettersens](https://github.com/stpettersens)
+
+> :mount_fuji: Unoffical "compiler" for Vue.js components written in a class-based style.
+
 [![Build Status](https://travis-ci.org/stpettersens/vue-component-compiler.png?branch=master)](https://travis-ci.org/stpettersens/vue-component-compiler)
 [![Build status](https://ci.appveyor.com/api/projects/status/8069glp56dcrma9t?svg=true)](https://ci.appveyor.com/project/stpettersens/vue-component-compiler)
 [![npm version](https://badge.fury.io/js/vuecc-compiler.svg)](http://npmjs.org/package/vuecc-compiler)
 [![Dependency Status](https://david-dm.org/stpettersens/vue-component-compiler.png?theme=shields.io)](https://david-dm.org/stpettersens/vue-component-compiler) [![Development Dependency Status](https://david-dm.org/stpettersens/vue-component-compiler/dev-status.png?theme=shields.io)](https://david-dm.org/stpettersens/vue-component-compiler#info=devDependencies)
-
-> :mount_fuji: Unoffical "compiler" for Vue.js components written in a class-based style.
 
 This compiler allows you to write components like so:
 

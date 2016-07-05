@@ -6,8 +6,6 @@
 
 const gulp = require('gulp')
 const tsc = require('gulp-typescript')
-const format = require('gulp-standard-format')
-const standard = require('gulp-standard')
 const replace = require('gulp-replace')
 const insert = require('gulp-insert')
 const mocha = require('gulp-mocha')
@@ -40,7 +38,6 @@ gulp.task('core', function () {
     removeComments: true
   }))
   .pipe(insert.prepend(header.join('\n')))
-  .pipe(format())
   .pipe(gulp.dest('.'))
 })
 
@@ -54,16 +51,7 @@ gulp.task('bin', function () {
   .pipe(insert.prepend(header.join('\n')))
   .pipe(insert.prepend('#!/usr/bin/env node\n'))
   .pipe(replace(/(.\/vuecc)/g, '$1.js'))
-  .pipe(format())
   .pipe(gulp.dest('.'))
-})
-
-gulp.task('js-standard', function () {
-  return gulp.src(['Gulpfile.js', '*.test.js'])
-  .pipe(standard())
-  .pipe(standard.reporter('default'), {
-    breakOnError: true
-  })
 })
 
 gulp.task('test1', function () {
@@ -82,5 +70,5 @@ gulp.task('clean', function () {
   .pipe(clean())
 })
 
-gulp.task('default', sequence('typings', ['core', 'bin'])) // , 'js-standard'))
-gulp.task('test', sequence('js-standard', 'test1', 'test2'))
+gulp.task('default', sequence('typings', ['core', 'bin']))
+gulp.task('test', sequence('test1', 'test2'))
