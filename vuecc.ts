@@ -326,7 +326,7 @@ class VueComponentCompiler {
     */
 	public static cli(program: string, input: string, output: string, options: string[]): void {
 		VueComponentCompiler.program = program;
-		VueComponentCompiler.version = '0.9';
+		VueComponentCompiler.version = '0.1.0';
 		VueComponentCompiler.colors = true;
 		VueComponentCompiler.verbose = true;
 		VueComponentCompiler.header = true;
