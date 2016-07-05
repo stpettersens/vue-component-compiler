@@ -335,26 +335,27 @@ class VueComponentCompiler {
 		VueComponentCompiler.output = output;
 		VueComponentCompiler.type = null;
 
-		for (let i = 2; i < options.length; i++) {
-			// i starts at 2 because process.argv[0, 1] is node and cli.js respectively.
-			if (options[i] == '-q' || options[i] == '--quiet') {
-				VueComponentCompiler.verbose = false;
-			}
+		if (options) {
+			for (let i = 0; i < options.length; i++) {
+				if (options[i] == '-q' || options[i] == '--quiet') {
+					VueComponentCompiler.verbose = false;
+				}
 
-			if (options[i] =='-c' || options[i] == '--no-colors') {
-				VueComponentCompiler.colors = false;
-			}
+				if (options[i] =='-c' || options[i] == '--no-colors') {
+					VueComponentCompiler.colors = false;
+				}
 
-			if (options[i] == '-n' || options[i] == '--no-header') {
-				VueComponentCompiler.header = false;
-			}
+				if (options[i] == '-n' || options[i] == '--no-header') {
+					VueComponentCompiler.header = false;
+				}
 
-			if (options[i] == '-t' || options[i] == '--type') {
-				VueComponentCompiler.type = options[i+1];
-			}
+				if (options[i] == '-t' || options[i] == '--type') {
+					VueComponentCompiler.type = options[i+1];
+				}
 
-			if (options[i] != null && options[i].charAt(0) == '[') {
-				VueComponentCompiler.references = JSON.parse(options[i].replace(/'/g, '"'));
+				if (options[i] != null && options[i].charAt(0) == '[') {
+					VueComponentCompiler.references = JSON.parse(options[i].replace(/'/g, '"'));
+				}
 			}
 		}
 
