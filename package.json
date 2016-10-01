@@ -38,7 +38,7 @@
     "gulp-replace": "^0.5.4",
     "gulp-rimraf": "^0.2.0",
     "gulp-sequence": "^0.4.5",
-    "gulp-typescript": "^2.13.4",
+    "gulp-typescript": "^3.0.1",
     "gulp-wait": "0.0.2"
   },
   "dependencies": {
