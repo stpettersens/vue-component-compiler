@@ -1,6 +1,6 @@
 ### Vue component compiler by [@stpettersens](https://github.com/stpettersens)
 
-> :mount_fuji: Unoffical "compiler" for Vue.js components written in a class-based style.
+> :mount_fuji: Unofficial "compiler" for Vue.js components written in a class-based style.
 
 [![Build Status](https://travis-ci.org/stpettersens/vue-component-compiler.png?branch=master)](https://travis-ci.org/stpettersens/vue-component-compiler)
 [![Build status](https://ci.appveyor.com/api/projects/status/8069glp56dcrma9t?svg=true)](https://ci.appveyor.com/project/stpettersens/vue-component-compiler)
